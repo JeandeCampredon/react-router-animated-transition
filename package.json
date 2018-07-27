@@ -1,0 +1,43 @@
+{
+  "name": "react-router-animated-transition",
+  "version": "0.0.2",
+  "description": "react router with easily configurable animated transitions",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build:lib": "babel src --out-dir lib --presets react,stage-2,env --plugins transform-export-extensions",
+    "build": "npm run build:lib",
+    "prebuild": "rm -rf lib && mkdir lib && rm -rf dist && mkdir dist",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "react-router",
+    "transition",
+    "react-motion",
+    "react-transition-group",
+    "animation",
+    "motion"
+  ],
+  "author": "Jean de Campredon",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=15"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react-router-dom": "^4.3.1",
+    "react-transition-group": "^2.4.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  }
+}
