@@ -1,6 +1,6 @@
 {
   "name": "react-router-animated-transition",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "react router with easily configurable animated transitions",
   "main": "lib/index.js",
   "files": [

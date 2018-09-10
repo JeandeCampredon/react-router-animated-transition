@@ -10,6 +10,7 @@ export const getChildren = ({ child, animation: parentAnimation }) => {
 
   const animation = parentAnimation ? { ...parentAnimation, ...childAnimation } : childAnimation;
   animation.timeout = animation.timeout || 600;
+  const transitionKey = `__${child.key}__transition__`;
 
   const { classNames } = animation;
 
@@ -18,18 +19,19 @@ export const getChildren = ({ child, animation: parentAnimation }) => {
     const { container = <div className={containerClassName} /> } = animation;
     const animatedChild = React.cloneElement(child, { animation });
     return (
-      <CSSTransition {...animation} key={child.key}>
+      <CSSTransition {...animation} key={transitionKey}>
         {container ? React.cloneElement(container, {}, animatedChild) : animatedChild}
       </CSSTransition>
     );
   }
 
   return (
-    <Transition {...animation} key={child.key}>
+    <Transition {...animation} key={transitionKey}>
       {status => React.cloneElement(child, { animation: { ...animation, status } })}
     </Transition>
   );
 };
+
 export const getContainer = ({ animation }) => (
   <TransitionGroup component={null} timeout={300} {...(animation || {})} />
 );
