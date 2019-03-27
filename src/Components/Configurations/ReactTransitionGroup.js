@@ -17,10 +17,12 @@ export const getChildren = ({ child, animation: parentAnimation }) => {
   if (classNames) {
     const containerClassName = typeof classNames === 'string' ? classNames : undefined;
     const { container = <div className={containerClassName} /> } = animation;
-    const animatedChild = React.cloneElement(child, { animation });
     return (
       <CSSTransition {...animation} key={transitionKey}>
-        {container ? React.cloneElement(container, {}, animatedChild) : animatedChild}
+        {status => {
+          const animatedChild = React.cloneElement(child, { animation: { ...animation, status } });
+          return container ? React.cloneElement(container, {}, animatedChild) : animatedChild;
+        }}
       </CSSTransition>
     );
   }
@@ -33,5 +35,5 @@ export const getChildren = ({ child, animation: parentAnimation }) => {
 };
 
 export const getContainer = ({ animation }) => (
-  <TransitionGroup component={null} timeout={300} {...(animation || {})} />
+  <TransitionGroup component={null} timeout={300} {...animation || {}} />
 );
